@@ -41,13 +41,12 @@
       "fields": [
         "service_type",
         "identifier",
-        "registered",
-        "provider"
+        "registered"
       ]
     }
   ],
   "pricing_url": "https://emailcheckpro.com/pricing",
   "maintainer": "EmailCheckPro",
   "license": "MIT",
-  "last_reviewed": "2026-09-22"
+  "last_reviewed": "2026-10-30"
 }

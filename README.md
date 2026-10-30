@@ -6,11 +6,10 @@ The **EmailCheckPro Email Deliverability Check API** checks whether an email add
 - **API documentation:** https://emailcheckpro.com/api-docs
 - **API base URL:** `https://emailcheckpro.com`
 - **Authentication:** `X-API-Key`
-- **Get an API key:** https://emailcheckpro.com/register
+- **Get an API key:** https://emailcheckpro.com/register?utm_source=github&utm_medium=referral&utm_campaign=emailcheckpro_email-deliverability-checker-api
 
 ## What does the EmailCheckPro Email Deliverability Check return?
 
-The API returns a `registered` boolean when the mailbox provider gives a determined answer, plus `provider` naming the mailbox family the domain resolved to. A successful single check uses `code=0`. In batch results, `exists=true` means a determined result is present; `exists=false` means the item is undetermined and must not be read as a negative answer. This repository covers only the `email` product.
 
 | API fact | Value |
 |---|---|
@@ -68,7 +67,6 @@ The batch response contains `service_type`, `total`, `succeeded`, `failed`, and 
 | `service_type` | Product code used for the check. |
 | `identifier` | Submitted email address echoed by the API. |
 | `registered` | Whether the address is registered with its mailbox provider. |
-| `provider` | Mailbox family resolved from the domain: `gmail`, `yandex`, `mailru`, `yahoo`, `outlook` or `other`. |
 
 ## What are the limits and error codes?
 
@@ -112,7 +110,7 @@ See the [EmailCheckPro pricing page](https://emailcheckpro.com/pricing). This re
 
 - **Product:** https://emailcheckpro.com/products/email
 - **Documentation:** https://emailcheckpro.com/api-docs
-- **Registration:** https://emailcheckpro.com/register
+- **Registration:** https://emailcheckpro.com/register?utm_source=github&utm_medium=referral&utm_campaign=emailcheckpro_email-deliverability-checker-api
 - **Pricing:** https://emailcheckpro.com/pricing
 - **OpenAPI contract:** [`openapi.yaml`](openapi.yaml)
 - **License:** [MIT](LICENSE) for the sample code
@@ -121,4 +119,8 @@ Use this API only for identifiers you are authorized to process, and comply with
 
 ---
 
-*Last reviewed: 2026-09-22 · Maintained by EmailCheckPro. Canonical product page: https://emailcheckpro.com/products/email*
+*Last reviewed: 2026-10-30 · Maintained by EmailCheckPro. Canonical product page: https://emailcheckpro.com/products/email*
+
+## Current response and timeout contract
+
+Result fields are directly in `data`: `service_type`, `identifier`, `registered`. Internal `provider`/`profile_available` are not returned. For ordered batches, `exists=false` means undetermined; never classify it as a negative. Python and Node.js select `MODE=single` (default) or `MODE=batch`; their client timeout defaults to 60 / 330 seconds and is configurable via `REQUEST_TIMEOUT_SECONDS`. The server batch window is 300 seconds. Do not blindly repeat a potentially billed request after an uncertain timeout. The default budget is five in-flight requests and one synchronous batch.
