@@ -1,2 +1,2 @@
-alex.kim@gmail.com
+alex.kim@example.com
 support@example.com

@@ -7,7 +7,7 @@ public class EmailChecker {
     public static void main(String[] args) throws Exception {
         String apiKey = System.getenv("EMAILCHECKPRO_API_KEY");
         if (apiKey == null) throw new IllegalStateException("Set EMAILCHECKPRO_API_KEY");
-        String body = "{\"service_type\":\"email\",\"identifier\":\"alex.kim@gmail.com\"}";
+        String body = "{\"service_type\":\"email\",\"identifier\":\"alex.kim@example.com\"}";
         HttpRequest request = HttpRequest.newBuilder(URI.create("https://emailcheckpro.com/api/v1/check"))
             .header("X-API-Key", apiKey)
             .header("Content-Type", "application/json")

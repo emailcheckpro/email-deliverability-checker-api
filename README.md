@@ -27,7 +27,7 @@ The **EmailCheckPro Email Deliverability Check API** checks whether an email add
 curl -X POST 'https://emailcheckpro.com/api/v1/check' \
   -H 'X-API-Key: YOUR_API_KEY' \
   -H 'Content-Type: application/json' \
-  -d '{"service_type":"email","identifier":"alex.kim@gmail.com"}'
+  -d '{"service_type":"email","identifier":"alex.kim@example.com"}'
 ```
 
 A determined response uses this envelope:
@@ -38,7 +38,7 @@ A determined response uses this envelope:
   "msg": "ok",
   "data": {
     "service_type": "email",
-    "identifier": "alex.kim@gmail.com",
+    "identifier": "alex.kim@example.com",
     "registered": true,
     "provider": "gmail"
   }
@@ -55,7 +55,7 @@ Submit 1–100 email addresses with one `service_type`. Results preserve input o
 curl -X POST 'https://emailcheckpro.com/api/v1/batch-check' \
   -H 'X-API-Key: YOUR_API_KEY' \
   -H 'Content-Type: application/json' \
-  -d '{"service_type":"email","identifiers":["alex.kim@gmail.com","support@example.com"]}'
+  -d '{"service_type":"email","identifiers":["alex.kim@example.com","support@example.com"]}'
 ```
 
 The batch response contains `service_type`, `total`, `succeeded`, `failed`, and an ordered `results` array. Every item has `identifier` and `exists`; the result fields are present only when `exists=true`.
